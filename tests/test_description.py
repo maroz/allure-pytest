@@ -1,17 +1,17 @@
 import pytest
 
-from hamcrest import assert_that, contains, all_of, has_entry, has_property, has_properties
+from hamcrest import assert_that, contains, has_property, equal_to
 
 
 @pytest.mark.parametrize('package', ['pytest.allure', 'allure'])
-def test_doctests(report_for, package):
+def test_descriptions(report_for, package):
     report = report_for("""
     import pytest
     import allure
 
-    def hello_world():
-        %s.description('hello world')
+    def test_x():
+        %s.description('Foo')
     """ % package)
 
-    assert_that(report.findall('.//test-case'), contains(
-        has_property('description', 'test_doctests.hello_world')))
+    assert_that(report.findall('.//test-case'),
+                contains(has_property('description', equal_to('Foo'))))
