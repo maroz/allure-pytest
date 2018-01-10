@@ -10,8 +10,8 @@ def test_descriptions(report_for, package):
     import allure
 
     def test_x():
-        %s.description('Foo')
+        %s.description('Description')
     """ % package)
 
     assert_that(report.findall('.//test-case'),
-                contains(has_property('description', equal_to('Foo'))))
+                contains(has_property('description', equal_to('Description'))))
