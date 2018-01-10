@@ -308,7 +308,7 @@ class LazyInitStepContext(StepContext):
         # record steps only when that
         # FIXME: this breaks encapsulation a lot
         if hasattr(listener, 'stack'):
-            return listeners
+            return listener
 
 
 class AllureHelper(object):
