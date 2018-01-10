@@ -145,6 +145,13 @@ class AllureTestListener(object):
         if self.test:
             self.test.labels.extend([TestLabel(name=Label.ISSUE, value=issue) for issue in issues])
 
+    def description(self, description):
+        """
+        Sets description for the test
+        """
+        if self.test:
+            self.test.description = description
+
     def start_step(self, name):
         """
         Starts an new :py:class:`allure.structure.TestStep` with given ``name``,
@@ -361,6 +368,13 @@ class AllureHelper(object):
         """
         if self._allurelistener:
             self._allurelistener.dynamic_issue(*issues)
+
+    def description(self, description):
+        """
+        Sets description for the test
+        """
+        if self._allurelistener:
+            self._allurelistener.description(description)
 
     def testcase(self, *testcases):
         """
